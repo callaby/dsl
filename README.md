@@ -4,7 +4,7 @@
 NN for DSL-1/2 devices 
 Training and evaluation scripts
 
-# Contains
+---
 - arch_nn_hyper.py
 ` looking for the best NN architecture within grid search and dropout levels`
 
