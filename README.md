@@ -1,5 +1,3 @@
 # dsl
-dsl portable soft
-
-# Dct ujdjhzn: Rhtvkm, Rhtvkm. (,tp ghj,tkjd: RD)
-openssl aes-256-cbc -d -a -in dsl.tar.gz.enc -out dsl.tar.gz
+NN for DSL-1/2 devices 
+Training and evaluation scripts
