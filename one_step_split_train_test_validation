@@ -1,0 +1,58 @@
+#!/usr/bin/perl -w
+
+use strict;
+my $VALIDATION_PART = 0.10;
+my $TEST_PART       = 0.10;
+
+my $names = get_names();
+my $train_names = {};
+my $validation_names = {};
+my $test_names = {};
+
+my @r = sort { rand() <=> rand() } keys %$names;
+
+my $split_index_validation = int(scalar(@r)*$VALIDATION_PART);
+my $split_index_test = int(scalar(@r)*($VALIDATION_PART+$TEST_PART));
+for (my $index = 0; $index <= $#r; $index++ ) {
+	if ( $index <= $split_index_validation ) {
+		$validation_names->{ $r[$index] } = 1;
+	} elsif ( $index > $split_index_validation && $index <= $split_index_test ) {
+		$test_names->{ $r[$index] } = 1;
+	} else {
+		$train_names->{ $r[$index] } = 1;
+	}
+}
+
+open (fF,"<data/all.tsv") || die $!;
+open (tF1,">data/train.tsv") || die $!;
+open (tF2,">data/validation.tsv") || die $!;
+open (tF3,">data/test.tsv") || die $!;
+while (my $string = <fF>) {
+	chomp $string;
+	my @v = split/\t/, $string;
+	if ( exists $train_names->{ $v[1] } ) {
+		print tF1 $string . "\n";
+	} elsif ( exists $test_names->{ $v[1] } ) {
+		print tF3 $string . "\n";
+	} else {
+		print tF2 $string . "\n";
+	}
+}
+close tF3;
+close tF2;
+close tF1;
+close fF;
+
+
+exit;
+
+sub get_names {
+	my $result = {};
+	open (fF,"<data/all.tsv") || die $!;
+	while (<fF>){
+		chomp;
+		my @v = split /\t/;
+		$result->{$v[1]} = 1;
+	}
+	return $result;
+}
