@@ -18,5 +18,5 @@ Training and evaluation scripts
 ` predict and metrics on *best-by-valacc* model`
 
 - train.py
-` low-epochs train with checkpoints with and loss-optimization early-stopping`
+` 15k low-nb-epoch train with checkpoints with and loss-optimization early-stopping`
 
