@@ -1,4 +1,6 @@
-# dsl
+# DeepSmartLight open repository
+`Copyright (c) 2021, DeepSmartLight.  All rights reserved.`
+
 NN for DSL-1/2 devices 
 Training and evaluation scripts
 
